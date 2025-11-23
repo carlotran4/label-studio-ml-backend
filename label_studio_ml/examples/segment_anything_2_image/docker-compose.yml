@@ -9,13 +9,13 @@ services:
       args:
         TEST_ENV: ${TEST_ENV}
 
-#    deploy:
-#      resources:
-#        reservations:
-#          devices:
-#            - driver: nvidia
-#              count: 1
-#              capabilities: [ gpu ]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
 
 
     environment:
@@ -43,8 +43,8 @@ services:
       # Do not use 'localhost' as it does not work within Docker containers.
       # Use prefix 'http://' or 'https://' for the URL always.
       # Determine the actual IP using 'ifconfig' (Linux/Mac) or 'ipconfig' (Windows).
-      - LABEL_STUDIO_URL=
-      - LABEL_STUDIO_API_KEY=
+      - LABEL_STUDIO_URL=http://host.docker.internal:8080
+      - LABEL_STUDIO_API_KEY=d50f4d44a37b2c041c95d516752b2e5bfa5ddbae
     ports:
       - "9090:9090"
     volumes:
